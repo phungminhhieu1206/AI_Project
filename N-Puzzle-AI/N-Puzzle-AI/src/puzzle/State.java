@@ -20,7 +20,7 @@ public class State {
     }
     public void Init() {
         for (int i=0; i < Length; i++) {
-           Value[i]=i;
+            Value[i]=i;
         }
     }
     public int[] createArrayRandom() {
@@ -32,11 +32,11 @@ public class State {
             int tmp = Value[i];
             Value[i] = Value[ri];
             Value[ri] = tmp;
-        }         
+        }
         return Value;
     }
     public int[] ArrayTronHinh() {
-        int t = 65;        
+        int t = 65;
         Init();
         this.blank=0;
         count = 0;
@@ -50,13 +50,13 @@ public class State {
                 case 4: UP();break;
             }
             while(true) {
-                b = rand1.nextInt(4)+1;                
-                if((a == 1 && b != 4) || (a == 4 && b != 1) || (a == 2 && b != 3) || (a == 3 && b != 2) ) 
+                b = rand1.nextInt(4)+1;
+                if((a == 1 && b != 4) || (a == 4 && b != 1) || (a == 2 && b != 3) || (a == 3 && b != 2) )
                 {
                     a = b;
                     break;
                 }
-            }            
+            }
             if(count == t) break;
         }
         return Value;
@@ -66,7 +66,7 @@ public class State {
         int Count =0;
         int posBlank = 0;
         for(int i = 0; i < Length; i++)
-            if(val[i] == 0) 
+            if(val[i] == 0)
             {
                 posBlank = i;
                 break;
@@ -105,76 +105,76 @@ public class State {
 
     public int findBlank()  // tìm vị trí ô trống
     {
-      int i=0;
-      for(i=0; i< Length; i++)
-          if(Value[i]==0) break;
-      return i;
+        int i=0;
+        for(i=0; i< Length; i++)
+            if(Value[i]==0) break;
+        return i;
     }
-  public Vector<State> successors() // tạo tập trạng thái mới
-  {
-      Vector<State> s = new Vector<State>();
-      int blank = 0;
-      for (int i = 0; i < Length; i++)
-          if (Value[i] == 0) {
-              blank = i;
-              break;
-          }      
-      if ((blank / Size) > 0) {
-          addSuccessor(blank, blank - Size, s, Value); //UP
-      }
-      if ((blank / Size) < Size-1) {
-          addSuccessor(blank, blank + Size, s, Value); //DOWN
-      }
-      if ((blank % Size) > 0) {
-          addSuccessor(blank, blank - 1, s, Value); //LEFT
-      }
-      if ((blank % Size) < Size-1) {
-          addSuccessor(blank, blank + 1, s, Value);//RIGHT
-      }
-	 return s;
-  }
-  private void addSuccessor(int old_loc, int new_loc, Vector<State> v, int[] old){  // thêm trạng thái con vào vector <state>
-      int[] val = (int[])old.clone();
-      val[old_loc] = val[new_loc];
-      val[new_loc] = 0;
-      v.add(0, new State(val, Size));
-  }
-  public int chooseheuristic(State goalstate) { // lựa chọn hàm heuristic
-      int est = 0;
-      if (heuristic == 1) est = heuristic1(goalstate);
-      else if (heuristic == 2) est = heuristic2(goalstate);
-      else if (heuristic == 3) est = heuristic3(goalstate);
-      else if (heuristic == 4) est = heuristic4(goalstate);
-      else if (heuristic == 5) est = heuristic5(goalstate);
-      else if (heuristic == 6) est = heuristic6(goalstate);
-      else if (heuristic == 7) est = heuristic7(goalstate);
-      return est;
+    public Vector<State> successors() // tạo tập trạng thái mới
+    {
+        Vector<State> s = new Vector<State>();
+        int blank = 0;
+        for (int i = 0; i < Length; i++)
+            if (Value[i] == 0) {
+                blank = i;
+                break;
+            }
+        if ((blank / Size) > 0) {
+            addSuccessor(blank, blank - Size, s, Value); //UP
+        }
+        if ((blank / Size) < Size-1) {
+            addSuccessor(blank, blank + Size, s, Value); //DOWN
+        }
+        if ((blank % Size) > 0) {
+            addSuccessor(blank, blank - 1, s, Value); //LEFT
+        }
+        if ((blank % Size) < Size-1) {
+            addSuccessor(blank, blank + 1, s, Value);//RIGHT
+        }
+        return s;
     }
-  public int heuristic1(State goalstate){ //Tổng số các ô sai vị trí:
-      int[] goal = goalstate.Value;
-      int distance = 0;
-      for(int i=0;i<Length;i++){
-          if(goal[i]!=Value[i] ) distance++;
-      }
-      return distance;
-  }
-  public int heuristic2(State goalstate) { //Tổng khoảng cách dịch chuyển ngắn nhất để dịch chuyển các ô sai về vị trí đúng của nó:
-      int[] goal = goalstate.Value;
-      int distance = 0;
-      for (int i = 0; i < Length; i++) {
-          int c = Value[i];
-          int v = 0;
-          for (int j = 0; j < Length; j++)
-              if (c == goal[j]) {
-                  v = j;
-                  break;
-              }
-          if (c != 0) {
-              distance += Math.abs((i % Size) - (v % Size)) +Math.abs((i / Size) - (v / Size));
-          }
-      }
-      return distance;
-  }
+    private void addSuccessor(int old_loc, int new_loc, Vector<State> v, int[] old){  // thêm trạng thái con vào vector <state>
+        int[] val = (int[])old.clone();
+        val[old_loc] = val[new_loc];
+        val[new_loc] = 0;
+        v.add(0, new State(val, Size));
+    }
+    public int chooseheuristic(State goalstate) { // lựa chọn hàm heuristic
+        int est = 0;
+        if (heuristic == 1) est = heuristic1(goalstate);
+        else if (heuristic == 2) est = heuristic2(goalstate);
+        else if (heuristic == 3) est = heuristic3(goalstate);
+        else if (heuristic == 4) est = heuristic4(goalstate);
+        else if (heuristic == 5) est = heuristic5(goalstate);
+        else if (heuristic == 6) est = heuristic6(goalstate);
+        else if (heuristic == 7) est = heuristic7(goalstate);
+        return est;
+    }
+    public int heuristic1(State goalstate){ //Tổng số các ô sai vị trí:
+        int[] goal = goalstate.Value;
+        int distance = 0;
+        for(int i=0;i<Length;i++){
+            if(goal[i]!=Value[i] ) distance++;
+        }
+        return distance;
+    }
+    public int heuristic2(State goalstate) { //Tổng khoảng cách dịch chuyển ngắn nhất để dịch chuyển các ô sai về vị trí đúng của nó:
+        int[] goal = goalstate.Value;
+        int distance = 0;
+        for (int i = 0; i < Length; i++) {
+            int c = Value[i];
+            int v = 0;
+            for (int j = 0; j < Length; j++)
+                if (c == goal[j]) {
+                    v = j;
+                    break;
+                }
+            if (c != 0) {
+                distance += Math.abs((i % Size) - (v % Size)) +Math.abs((i / Size) - (v / Size));
+            }
+        }
+        return distance;
+    }
     public int heuristic3(State goalstate) {// Tổng khoảng cách Euclide của các ô so với ô mục tiêu
         int[] goal = goalstate.Value;
         int distance = 0;
@@ -216,13 +216,46 @@ public class State {
         distance = distance+col+row;
         return distance;
     }
-    public int heuristic5(State goalstate) {//Tổng khoảng cách về vị trí ban đầu với số ô nằm sai vị trí
+    public int heuristic5(State goalstate) { //Tổng bình phương khoảng cách dịch chuyển
         int[] goal = goalstate.Value;
         int distance = 0;
         for (int i = 0; i < Length; i++) {
             int c = Value[i];
             int v = 0;
-            if(goal[i]!=Value[i]) distance++;
+            for (int j = 0; j < Length; j++)
+                if (c == goal[j]) {
+                    v = j;
+                    break;
+                }
+            if (c != 0) {
+                int xd = (i % Size) - (v % Size);
+                int yd = (i / Size) - (v / Size); // bình phương khoảng cách lên
+                distance += xd * xd + yd * yd;
+            }
+        }
+        return distance;
+    }
+    public int heuristic6(State goalstate) { //Tổng số các ô sai vị trí cộng chỉ số cấc ô hàng xóm cạnh  nhau nhưng ngược ví trí
+        int[] goal = goalstate.Value;
+        int distance = 0;
+        int a = 0;
+        for (int i = 0; i < Length; i++) {
+            if(goal[i]!=Value[i] && goal[i]!=0) distance++;
+            //Tính chỉ số các ô hàng xóm nằm cạnh nhau nhưng ngược vị trí của nhau
+            if((i != 0) && (i % Size != Size-1) && (Value[i] == i+1) && (Value[i+1] == i)) a += 2;
+            if((i != 0) && (i < Length - Size) && (Value[i] == i+Size)&& (Value[i+Size] == i)) a += 2;
+        }
+        distance = distance+a;
+        return distance;
+    }
+    public int heuristic7(State goalstate) {//Tổng khoảng cách dịch chuyển ngắn nhất + chỉ số ố các ô hàng xóm nằm cạnh nhau nhưng ngược vị trí của nhau
+        int[] goal = goalstate.Value;
+        int distance = 0;
+        int a = 0;
+        for (int i = 0; i < Length; i++)
+        {
+            int c = Value[i];
+            int v = 0;
             for (int j = 0; j < Length; j++)
                 if (c == goal[j]) {
                     v = j;
@@ -231,108 +264,65 @@ public class State {
             if (c != 0) {
                 distance += Math.abs((i % Size) - (v % Size)) +Math.abs((i / Size) - (v / Size));
             }
+            //Tính chỉ số các ô hàng xóm nằm cạnh nhau nhưng ngược vị trí của nhau
+            if((i != 0) && (i % Size != Size-1) && (Value[i] == i+1) && (Value[i+1] == i)) a += 2;
+            if((i != 0) && (i < Length - Size) && (Value[i] == i+Size)&& (Value[i+Size] == i)) a += 2;
         }
-        return distance;
-    }
-  public int heuristic6(State goalstate) {//Tổng khoảng cách dịch chuyển ngắn nhất + chỉ số ố các ô hàng xóm nằm cạnh nhau nhưng ngược vị trí của nhau
-      int[] goal = goalstate.Value;
-      int distance = 0;
-      int a = 0;
-      for (int i = 0; i < Length; i++)
-      {
-          int c = Value[i];
-          int v = 0;
-          for (int j = 0; j < Length; j++)
-              if (c == goal[j]) {
-                  v = j;
-                  break;
-              }
-          if (c != 0) {
-              distance += Math.abs((i % Size) - (v % Size)) +Math.abs((i / Size) - (v / Size));
-          }
-          //Tính chỉ số các ô hàng xóm nằm cạnh nhau nhưng ngược vị trí của nhau
-          if((i != 0) && (i % Size != Size-1) && (Value[i] == i+1) && (Value[i+1] == i)) a += 2;
-          if((i != 0) && (i < Length - Size) && (Value[i] == i+Size)&& (Value[i+Size] == i)) a += 2;
-      }
 
-      return distance + a;
-  }
-    public int heuristic7(State goalstate) { //Bình phương khoảng cách cộng với chỉ số cấc ô hàng xóm cạnh  nhau nhưng ngược ví trí
-      int[] goal = goalstate.Value;
-      int distance = 0;
-      int a = 0;
-      for (int i = 0; i < Length; i++) {
-          int c = Value[i];
-          int v = 0;
-          for (int j = 0; j < Length; j++)
-              if (c == goal[j]) {
-                  v = j;
-                  break;
-              }
-          if (c != 0) {
-              int xd = (i % Size) - (v % Size);
-              int yd = (i / Size) - (v / Size); // bình phương khoảng cách lên
-              distance += xd*xd + yd*yd;
-          }
-          //Tính chỉ số các ô hàng xóm nằm cạnh nhau nhưng ngược vị trí của nhau
-          if((i != 0) && (i % Size != Size-1) && (Value[i] == i+1) && (Value[i+1] == i)) a += 2;
-          if((i != 0) && (i < Length - Size) && (Value[i] == i+Size)&& (Value[i+Size] == i)) a += 2;
-      }      
-      distance = distance  + a;
-      return distance;
+        return distance + a;
     }
     public void DOWN() {
         int temp;
-            if(blank < Length-Size)
-            {
-                temp = Value[blank];
-                Value[blank] = Value[blank+Size];
-                Value[blank+Size] = temp;
-                blank=blank+Size;
-                count++;
-            }
-            else return;
+        if(blank < Length-Size)
+        {
+            temp = Value[blank];
+            Value[blank] = Value[blank+Size];
+            Value[blank+Size] = temp;
+            blank=blank+Size;
+            count++;
+        }
+        else return;
     }
 
     public void UP() {
         int temp;
-            if(blank >= Size)
-            {
-                temp = Value[blank];
-                Value[blank] = Value[blank-Size];
-                Value[blank-Size] = temp;
-                blank=blank-Size;
-                count++;
-            }
-            else return;
+        if(blank >= Size)
+        {
+            temp = Value[blank];
+            Value[blank] = Value[blank-Size];
+            Value[blank-Size] = temp;
+            blank=blank-Size;
+            count++;
+        }
+        else return;
     }
 
     public void RIGHT() {
         int temp;
-            if(blank % Size !=Size-1)
-            {
-                temp = Value[blank];
-                Value[blank] = Value[blank+1];
-                Value[blank+1] = temp;
-                blank=blank+1;
-                count++;
-            }
-            else return;
+        if(blank % Size !=Size-1)
+        {
+            temp = Value[blank];
+            Value[blank] = Value[blank+1];
+            Value[blank+1] = temp;
+            blank=blank+1;
+            count++;
+        }
+        else return;
     }
 
     public void LEFT() {
         int temp;
-            if(blank % Size != 0 )
-            {
-                temp = Value[blank];
-                Value[blank] = Value[blank-1];
-                Value[blank-1] = temp;
-                blank=blank-1;
-                count++;
-            }
-            else return;
-    } 
-  
+        if(blank % Size != 0 )
+        {
+            temp = Value[blank];
+            Value[blank] = Value[blank-1];
+            Value[blank-1] = temp;
+            blank=blank-1;
+            count++;
+        }
+        else return;
+    }
+
 }
   
   

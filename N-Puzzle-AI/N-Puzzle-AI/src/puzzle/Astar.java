@@ -154,14 +154,4 @@ public class Astar {
         }
         else KQ.add(n);
     }
-    public static void main(String[] args) {
-        int[]  ar1 = {1,0,2,3,4,5,6,8,7};
-        int[]  ar2 = {0,1,2,3,4,5,6,7,8};
-        State x1 = new State(ar1,3);
-        State x2 = new State(ar2 , 3);
-        Astar ax = new Astar();
-        ax.startnode = new Node(x1,0);
-        ax.goalnode = new Node(x2,0);
-        ax.solveBFS();
-    }
 }
