@@ -1,2 +1,2 @@
 # AI_Project
-Đề tài: Xây dựng một hệ thống suy diễn với tri thức không chắc chắn (suy diễn dựa trên xác suất bayes).
+Đề tài: Sử dụng các thuật toán tìm đường đi BFS, A* để giải quyết bài toán xếp hình.
