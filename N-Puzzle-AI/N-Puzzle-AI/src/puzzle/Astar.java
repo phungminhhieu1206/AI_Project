@@ -146,6 +146,10 @@ public class Astar {
          if(n.equals(v)) return true;
          return false;
      }
+    /*public boolean isKT(Node n, Node v){ //kiểm tra hai nút có trùng nhau không
+        if(n.equals(v)) return true;
+        return false;
+    }*/
 
     public void AddKQ(Node n){//đưa kết quả vào KQ
         if(n.Parent!=null) {
