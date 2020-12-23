@@ -96,9 +96,11 @@ public class Astar {
          Q.add(startnode);
          KQ.add(startnode);
          startnode.check=true;
-         total_nodes = 0;
+         total_nodes = 1;
+         count =0;
          try {
              while (true) {
+                 count ++;
                  Node nx = Q.poll();
                  if (System.currentTimeMillis() - startTime > 18000) { //điều kiện dừng
                      M.clear();
