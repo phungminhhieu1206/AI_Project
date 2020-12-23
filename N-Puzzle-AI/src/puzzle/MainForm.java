@@ -17,7 +17,6 @@ public class MainForm extends javax.swing.JFrame implements MouseListener, KeyLi
     private javax.swing.JRadioButton h4;
     private javax.swing.JRadioButton h5;
     private javax.swing.JRadioButton h6;
-    private javax.swing.JRadioButton h7;
     private javax.swing.JPanel heuristic;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -98,7 +97,6 @@ public class MainForm extends javax.swing.JFrame implements MouseListener, KeyLi
         buttonGroup3.add(h4);
         buttonGroup3.add(h5);
         buttonGroup3.add(h6);
-        buttonGroup3.add(h7);
         h1.setSelected(true);
     }
 
@@ -176,7 +174,6 @@ public class MainForm extends javax.swing.JFrame implements MouseListener, KeyLi
         h4 = new javax.swing.JRadioButton();
         h5 = new javax.swing.JRadioButton();
         h6 = new javax.swing.JRadioButton();
-        h7 = new javax.swing.JRadioButton();
         typesolve = new javax.swing.JPanel();
         sizePanel = new javax.swing.JPanel();
         size2 = new javax.swing.JRadioButton();
@@ -209,7 +206,6 @@ public class MainForm extends javax.swing.JFrame implements MouseListener, KeyLi
         h4.setText("heuristic4");
         h5.setText("heuristic5");
         h6.setText("heuristic6");
-        h7.setText("heuristic7");
         javax.swing.GroupLayout heuristicLayout = new javax.swing.GroupLayout(heuristic);
         heuristic.setLayout(heuristicLayout);
         heuristicLayout.setHorizontalGroup(
@@ -222,8 +218,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener, KeyLi
                                         .addComponent(h3)
                                         .addComponent(h4)
                                         .addComponent(h5)
-                                        .addComponent(h6)
-                                        .addComponent(h7, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE))
+                                        .addComponent(h6, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE))
                                 .addContainerGap())
         );
         heuristicLayout.setVerticalGroup(
@@ -242,8 +237,6 @@ public class MainForm extends javax.swing.JFrame implements MouseListener, KeyLi
                                 .addComponent(h5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(h6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(h7)
                                 .addContainerGap(26, Short.MAX_VALUE))
         );
         sizePanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)), "Board size"));
@@ -460,7 +453,6 @@ public class MainForm extends javax.swing.JFrame implements MouseListener, KeyLi
         else if (h4.isSelected()) State.heuristic = 4;
         else if (h5.isSelected()) State.heuristic = 5;
         else if (h6.isSelected()) State.heuristic = 6;
-        else if (h7.isSelected()) State.heuristic = 7;
         else if (bfs.isSelected()) type = 1;
         progressBar.setVisible(true);
         progressBar.setString("Please wait ...");
@@ -764,7 +756,6 @@ public class MainForm extends javax.swing.JFrame implements MouseListener, KeyLi
         h4.setEnabled(false);
         h5.setEnabled(false);
         h6.setEnabled(false);
-        h7.setEnabled(false);
     }
     public void EnableRadio() {
         size1.setEnabled(true);
@@ -778,7 +769,6 @@ public class MainForm extends javax.swing.JFrame implements MouseListener, KeyLi
         h4.setEnabled(true);
         h5.setEnabled(true);
         h6.setEnabled(true);
-        h7.setEnabled(true);
     }
     public void mouseClicked(MouseEvent me) {}
     public void mousePressed(MouseEvent me) {

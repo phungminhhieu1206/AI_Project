@@ -147,7 +147,6 @@ public class State {
         else if (heuristic == 4) est = heuristic4(goalstate);
         else if (heuristic == 5) est = heuristic5(goalstate);
         else if (heuristic == 6) est = heuristic6(goalstate);
-        else if (heuristic == 7) est = heuristic7(goalstate);
         return est;
     }
     public int heuristic1(State goalstate){ //Tổng số các ô sai vị trí:
@@ -235,20 +234,7 @@ public class State {
         }
         return distance;
     }
-    public int heuristic6(State goalstate) { //Tổng số các ô sai vị trí cộng số ô xung đột tuyến tính
-        int[] goal = goalstate.Value;
-        int distance = 0;
-        int a = 0;
-        for (int i = 0; i < Length; i++) {
-            if(goal[i]!=Value[i] && goal[i]!=0) distance++;
-            //Tính số ô xung đột tuyến tính
-            if((i != 0) && (i % Size != Size-1) && (Value[i] == i+1) && (Value[i+1] == i)) a += 2;
-            if((i != 0) && (i < Length - Size) && (Value[i] == i+Size)&& (Value[i+Size] == i)) a += 2;
-        }
-        distance = distance+a;
-        return distance;
-    }
-    public int heuristic7(State goalstate) {//Tổng khoảng cách dịch chuyển ngắn nhất + số ô xung đột tuyến tính
+    public int heuristic6(State goalstate) {//Tổng khoảng cách dịch chuyển ngắn nhất + số ô xung đột tuyến tính
         int[] goal = goalstate.Value;
         int distance = 0;
         int a = 0;
