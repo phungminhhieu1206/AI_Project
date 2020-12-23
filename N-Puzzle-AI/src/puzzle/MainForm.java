@@ -862,28 +862,28 @@ public class MainForm extends javax.swing.JFrame implements MouseListener, KeyLi
         }
         else
         {
-            if(ke.getKeyCode() == KeyEvent.VK_DOWN && Ju.blank >= Size) {
+            if(ke.getKeyCode() == KeyEvent.VK_UP && Ju.blank >= Size) {
                 playtime = true;
                 Ju.UP();
                 count++;
                 moveTextField.setText("   " + count);
                 this.repaint();
             }
-            else if(ke.getKeyCode() == KeyEvent.VK_UP && Ju.blank < Length - Size) {
+            else if(ke.getKeyCode() == KeyEvent.VK_DOWN && Ju.blank < Length - Size) {
                 playtime = true;
                 Ju.DOWN();
                 count++;
                 moveTextField.setText("   " + count);
                 this.repaint();
             }
-            else if(ke.getKeyCode() == KeyEvent.VK_RIGHT && Ju.blank % Size != 0) {
+            else if(ke.getKeyCode() == KeyEvent.VK_LEFT && Ju.blank % Size != 0) {
                 playtime = true;
                 Ju.LEFT();
                 count++;
                 moveTextField.setText("   " + count);
                 this.repaint();
             }
-            else if(ke.getKeyCode() == KeyEvent.VK_LEFT && Ju.blank % Size != Size - 1) {
+            else if(ke.getKeyCode() == KeyEvent.VK_RIGHT && Ju.blank % Size != Size - 1) {
                 playtime = true;
                 Ju.RIGHT();
                 count++;
