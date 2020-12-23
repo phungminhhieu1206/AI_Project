@@ -235,20 +235,20 @@ public class State {
         }
         return distance;
     }
-    public int heuristic6(State goalstate) { //Tổng số các ô sai vị trí cộng chỉ số cấc ô hàng xóm cạnh  nhau nhưng ngược ví trí
+    public int heuristic6(State goalstate) { //Tổng số các ô sai vị trí cộng số ô xung đột tuyến tính
         int[] goal = goalstate.Value;
         int distance = 0;
         int a = 0;
         for (int i = 0; i < Length; i++) {
             if(goal[i]!=Value[i] && goal[i]!=0) distance++;
-            //Tính chỉ số các ô hàng xóm nằm cạnh nhau nhưng ngược vị trí của nhau
+            //Tính số ô xung đột tuyến tính
             if((i != 0) && (i % Size != Size-1) && (Value[i] == i+1) && (Value[i+1] == i)) a += 2;
             if((i != 0) && (i < Length - Size) && (Value[i] == i+Size)&& (Value[i+Size] == i)) a += 2;
         }
         distance = distance+a;
         return distance;
     }
-    public int heuristic7(State goalstate) {//Tổng khoảng cách dịch chuyển ngắn nhất + chỉ số ố các ô hàng xóm nằm cạnh nhau nhưng ngược vị trí của nhau
+    public int heuristic7(State goalstate) {//Tổng khoảng cách dịch chuyển ngắn nhất + số ô xung đột tuyến tính
         int[] goal = goalstate.Value;
         int distance = 0;
         int a = 0;
@@ -264,7 +264,7 @@ public class State {
             if (c != 0) {
                 distance += Math.abs((i % Size) - (v % Size)) +Math.abs((i / Size) - (v / Size));
             }
-            //Tính chỉ số các ô hàng xóm nằm cạnh nhau nhưng ngược vị trí của nhau
+            //Tính số ô xung đột tuyến tính
             if((i != 0) && (i % Size != Size-1) && (Value[i] == i+1) && (Value[i+1] == i)) a += 2;
             if((i != 0) && (i < Length - Size) && (Value[i] == i+Size)&& (Value[i+Size] == i)) a += 2;
         }
